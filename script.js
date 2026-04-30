@@ -426,34 +426,30 @@ function acceptCookie() {
 // Initialize
 showCookieBanner();
 
+
 // ============================================================
-// THEME TOGGLE — Dark / Light
+// COMET TRAIL CURSOR (4)
 // ============================================================
-function applyTheme(theme) {
-  const body = document.body;
-  const iconDark  = document.getElementById('toggleDark');
-  const iconLight = document.getElementById('toggleLight');
+(function initCometTrail() {
+  document.addEventListener('mousemove', (e) => {
+    // Only spawn particles occasionally for performance
+    if (Math.random() > 0.4) return;
 
-  if (theme === 'light') {
-    body.classList.add('light-theme');
-    if (iconDark)  { iconDark.classList.add('active');    }
-    if (iconLight) { iconLight.classList.remove('active'); }
-  } else {
-    body.classList.remove('light-theme');
-    if (iconDark)  { iconDark.classList.remove('active'); }
-    if (iconLight) { iconLight.classList.add('active');   }
-  }
-}
-
-function toggleTheme() {
-  const isLight = document.body.classList.contains('light-theme');
-  const next = isLight ? 'dark' : 'light';
-  applyTheme(next);
-  localStorage.setItem('xelans_theme', next);
-}
-
-// Apply saved theme on load (default = dark)
-(function initTheme() {
-  const saved = localStorage.getItem('xelans_theme') || 'dark';
-  applyTheme(saved);
+    const particle = document.createElement('div');
+    particle.className = 'comet-particle';
+    
+    // Slight random offset
+    const ox = (Math.random() - 0.5) * 15;
+    const oy = (Math.random() - 0.5) * 15;
+    
+    particle.style.left = (e.clientX + ox) + 'px';
+    particle.style.top = (e.clientY + oy) + 'px';
+    
+    document.body.appendChild(particle);
+    
+    // Remove after animation
+    setTimeout(() => {
+      particle.remove();
+    }, 800);
+  });
 })();
