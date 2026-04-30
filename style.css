@@ -1368,14 +1368,12 @@ body { overflow: hidden; }
    MARKET TICKER
    ============================================================ */
 .ticker-section { 
-  background-image: url('assets/imgs/bg_nebula.png');
-  background-position: center;
+  background: var(--bg-2);
   border-top: 1px solid var(--border); 
   border-bottom: 1px solid var(--border); 
-  padding: 0; 
-}
-.ticker-section::before {
-  background: rgba(5, 7, 10, 0.95); /* Extra dark for data readability */
+  padding: 80px 0; 
+  position: relative;
+  z-index: 5;
 }
 
 .ticker-tabs {
@@ -1390,14 +1388,14 @@ body { overflow: hidden; }
 .ticker-tabs::-webkit-scrollbar { display: none; }
 .ticker-tab {
   padding: 13px 20px;
-  color: var(--text-2);
+  color: rgba(255,255,255,0.7);
   font-size: 0.84rem;
-  font-weight: 500;
+  font-weight: 600;
   border-bottom: 2px solid transparent;
   transition: var(--ease);
   white-space: nowrap;
 }
-.ticker-tab:hover { color: var(--text); }
+.ticker-tab:hover { color: var(--white); }
 .ticker-tab.active { color: var(--gold-2); border-bottom-color: var(--gold); }
 
 .ticker-table-wrapper { 
