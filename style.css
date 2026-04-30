@@ -1354,13 +1354,25 @@ body { overflow: hidden; }
 /* ============================================================
    MARKET TICKER
    ============================================================ */
-.ticker-section { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0; }
+.ticker-section { 
+  background-image: url('assets/imgs/bg_nebula.png');
+  background-position: center;
+  border-top: 1px solid var(--border); 
+  border-bottom: 1px solid var(--border); 
+  padding: 0; 
+}
+.ticker-section::before {
+  background: rgba(5, 7, 10, 0.95); /* Extra dark for data readability */
+}
+
 .ticker-tabs {
   display: flex;
   border-bottom: 1px solid var(--border);
   overflow-x: auto;
   scrollbar-width: none;
   padding: 0 32px;
+  position: relative;
+  z-index: 2;
 }
 .ticker-tabs::-webkit-scrollbar { display: none; }
 .ticker-tab {
@@ -1374,7 +1386,16 @@ body { overflow: hidden; }
 }
 .ticker-tab:hover { color: var(--text); }
 .ticker-tab.active { color: var(--gold-2); border-bottom-color: var(--gold); }
-.ticker-table-wrapper { overflow-x: auto; padding: 0 32px; }
+
+.ticker-table-wrapper { 
+  overflow-x: auto; 
+  padding: 20px 32px; 
+  background: rgba(11, 13, 15, 0.6); /* Glassmorphic background */
+  backdrop-filter: blur(10px);
+  margin: 20px 32px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+}
 .ticker-table { width: 100%; border-collapse: collapse; min-width: 600px; }
 .ticker-table thead tr { border-bottom: 1px solid var(--border); }
 .ticker-table th { padding: 13px 14px; text-align: left; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-2); }
