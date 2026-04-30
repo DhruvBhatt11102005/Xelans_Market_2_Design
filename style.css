@@ -571,39 +571,56 @@ section::before {
 }
 
 .hero { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
+  background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2560&q=80'); 
   background-attachment: fixed;
 }
 .hero::before { background: rgba(5, 7, 10, 0.4); }
 
+.ticker-section { 
+  background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4999d?auto=format&fit=crop&w=2560&q=80');
+  background-position: center;
+  border-top: 1px solid var(--border); 
+  border-bottom: 1px solid var(--border); 
+  padding: 0; 
+}
+.ticker-section::before {
+  background: rgba(5, 7, 10, 0.95);
+}
+
 .steps-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: top center;
+  background-image: url('https://images.unsplash.com/photo-1464802686167-b939a67e06a1?auto=format&fit=crop&w=2560&q=80'); 
 }
 .features-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: center left;
+  background-image: url('https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?auto=format&fit=crop&w=2560&q=80'); 
 }
 .stats-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: bottom right;
+  background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=2560&q=80'); 
   background-attachment: fixed;
 }
 .platforms-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: center center;
+  background-image: url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78?auto=format&fit=crop&w=2560&q=80'); 
 }
 .markets-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: 20% 50%;
+  background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=2560&q=80'); 
 }
 .insurance-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: 80% 20%;
+  background-image: url('https://images.unsplash.com/photo-1504333638930-c8787321eba0?auto=format&fit=crop&w=2560&q=80'); 
 }
 .why-section { 
-  background-image: url('assets/imgs/bg_nebula.png'); 
-  background-position: center bottom;
+  background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2560&q=80'); 
+}
+
+.cta-banner {
+  background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=2560&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 10, 0.7);
+  z-index: 0;
 }
 
 .section-header { text-align: center; margin-bottom: 56px; }
@@ -2405,12 +2422,21 @@ body { overflow: hidden; }
    FOOTER
    ============================================================ */
 .footer {
-  background: #081121;
+  background-image: url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=2560&q=80');
+  background-size: cover;
+  background-position: center;
   border-top: 2px solid rgba(212,160,23,0.15);
   position: relative;
   overflow: hidden;
   padding: 120px 0 30px;
   margin-top: 150px;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 7, 10, 0.94);
+  z-index: 0;
 }
 .footer-container { max-width: 1240px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
