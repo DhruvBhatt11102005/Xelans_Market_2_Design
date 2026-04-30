@@ -395,6 +395,61 @@ body::before {
   100% { transform: translateX(-1500px) rotate(-35deg); opacity: 0; }
 }
 
+/* Global Shooting Stars (Meteor Shower) */
+.global-shooting-stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.g-shooting-star {
+  position: absolute;
+  width: 150px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0;
+}
+.g-star-1 {
+  top: 15%; right: -150px;
+  transform: rotate(-30deg);
+  transform-origin: right center;
+  animation: gShootingStar1 20s infinite 3s linear;
+}
+.g-star-2 {
+  top: 50%; right: -150px;
+  transform: rotate(-20deg);
+  transform-origin: right center;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+  animation: gShootingStar2 28s infinite 10s linear;
+}
+.g-star-3 {
+  top: 80%; right: -150px;
+  transform: rotate(-40deg);
+  transform-origin: right center;
+  width: 100px;
+  animation: gShootingStar3 24s infinite 18s linear;
+}
+
+@keyframes gShootingStar1 {
+  0% { transform: rotate(-30deg) translateX(0); opacity: 0; }
+  1% { opacity: 1; }
+  15% { transform: rotate(-30deg) translateX(-150vw); opacity: 0; }
+  100% { transform: rotate(-30deg) translateX(-150vw); opacity: 0; }
+}
+@keyframes gShootingStar2 {
+  0% { transform: rotate(-20deg) translateX(0); opacity: 0; }
+  1% { opacity: 1; }
+  15% { transform: rotate(-20deg) translateX(-150vw); opacity: 0; }
+  100% { transform: rotate(-20deg) translateX(-150vw); opacity: 0; }
+}
+@keyframes gShootingStar3 {
+  0% { transform: rotate(-40deg) translateX(0); opacity: 0; }
+  1% { opacity: 1; }
+  15% { transform: rotate(-40deg) translateX(-150vw); opacity: 0; }
+  100% { transform: rotate(-40deg) translateX(-150vw); opacity: 0; }
+}
+
 .nebula-glow {
   position: absolute;
   top: 50%;
@@ -407,6 +462,52 @@ body::before {
   transform: translate(-50%, -50%);
   z-index: -1;
   filter: blur(60px);
+}
+
+/* Saturn Planet */
+.saturn-planet {
+  position: absolute;
+  top: 15%;
+  left: 10%;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #e0b535, #6b4510 70%);
+  border-radius: 50%;
+  box-shadow: inset -10px -10px 20px rgba(0,0,0,0.8), 0 0 20px rgba(212,160,23,0.2);
+  animation: saturnFloat 20s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.saturn-planet::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 16px;
+  border: 4px solid rgba(212,160,23,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(20deg);
+  box-shadow: 0 0 10px rgba(212,160,23,0.2), inset 0 0 10px rgba(212,160,23,0.2);
+}
+
+.saturn-planet::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 16px;
+  border: 4px solid transparent;
+  border-bottom-color: rgba(212,160,23,0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(20deg);
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5));
+}
+
+@keyframes saturnFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-30px) rotate(5deg); }
 }
 
 
