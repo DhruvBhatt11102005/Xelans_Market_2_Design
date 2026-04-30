@@ -577,14 +577,10 @@ section::before {
 .hero::before { background: rgba(5, 7, 10, 0.4); }
 
 .ticker-section { 
-  background-image: url('assets/imgs/bg_star_field.jpg');
-  background-position: center;
+  background: var(--bg-2);
   border-top: 1px solid var(--border); 
   border-bottom: 1px solid var(--border); 
   padding: 0; 
-}
-.ticker-section::before {
-  background: rgba(5, 7, 10, 0.95);
 }
 
 .steps-section { 
