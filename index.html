@@ -25,6 +25,37 @@
     <div class="g-shooting-star g-star-3"></div>
   </div>
 
+  <!-- ===== FALLING METEORS (Right to Left) ===== -->
+  <div class="meteors-background" aria-hidden="true">
+    <div class="meteor m-1"></div>
+    <div class="meteor m-2"></div>
+    <div class="meteor m-3"></div>
+    <div class="meteor m-4"></div>
+    <div class="meteor m-5"></div>
+    <div class="meteor m-6"></div>
+  </div>
+
+  </div>
+
+  <!-- ===== GLOBAL SCANLINE & TECH PARTICLES ===== -->
+  <div class="scifi-overlay" aria-hidden="true">
+    <div class="scanline"></div>
+    <div class="tech-particles">
+      <div class="t-particle t-1"></div>
+      <div class="t-particle t-2"></div>
+      <div class="t-particle t-3"></div>
+    </div>
+  </div>
+
+  <!-- ===== INTERACTIVE SPACE LAYER ===== -->
+  <div class="space-interactive-layer" aria-hidden="true">
+    <div class="parallax-stars" id="parallaxStars">
+      <div class="p-star-layer layer-1"></div>
+      <div class="p-star-layer layer-2"></div>
+      <div class="p-star-layer layer-3"></div>
+    </div>
+  </div>
+
   <!-- ===== PRELOADER ===== -->
   <div class="preloader" id="preloader">
     <div class="preloader-content">
@@ -150,7 +181,7 @@
   </header>
 
   <!-- ===== HERO SECTION ===== -->
-  <section class="hero curved-section" id="hero">
+  <section class="hero" id="hero">
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
     <div class="hero-grid-overlay"></div>
     <!-- Full Space Theme Background -->
@@ -168,6 +199,11 @@
       <div class="nebula-glow"></div>
       <!-- Saturn / Ringed Planet -->
       <div class="saturn-planet"></div>
+      <!-- Added: Orbiting Moon -->
+      <div class="moon-container">
+        <div class="moon"></div>
+      </div>
+
     </div>
 
     <div class="hero-slider" id="heroSlider">
@@ -205,7 +241,11 @@
             <div class="earth-glow"></div>
             
             <!-- Orbital Rings/Nodes -->
-            <div class="orbital-ring"></div>
+            <div class="orbital-ring">
+              <div class="data-pulse pulse-1"></div>
+              <div class="data-pulse pulse-2"></div>
+              <div class="data-pulse pulse-3"></div>
+            </div>
             <div class="orbit-node node-gold"></div>
             <div class="orbit-node node-blue"></div>
           </div>
@@ -353,12 +393,12 @@
   </section>
 
   <!-- ===== HOW TO START ===== -->
-  <section class="steps-section reveal curved-section-top" id="howToStart">
+  <section class="steps-section reveal curved-section" id="howToStart">
     <div class="nebula-drift-bg"></div>
     <div class="section-container">
       <div class="section-header">
         <span class="section-tag">Get Started</span>
-        <h2 class="section-title">Start Trading in <span class="gradient-text">4 Simple Steps</span></h2>
+        <h2 class="section-title h-glitch" data-text="Start Trading in 4 Simple Steps">Start Trading in <span class="gradient-text">4 Simple Steps</span></h2>
         <p class="section-sub">Join thousands of traders on the world's leading forex platform in minutes</p>
       </div>
       <div class="steps-grid">
@@ -410,12 +450,31 @@
 
 
   <!-- ===== FEATURES ===== -->
-  <section class="features-section reveal curved-section" id="features">
+  <section class="features-section reveal curved-section-top" id="features">
     <div class="nebula-drift-bg" style="animation-delay: -10s;"></div>
+    
+    <!-- Warp Speed Streaks -->
+    <div class="warp-streaks-container" aria-hidden="true">
+      <div class="warp-streak streak-1"></div>
+      <div class="warp-streak streak-2"></div>
+      <div class="warp-streak streak-3"></div>
+      <div class="warp-streak streak-4"></div>
+      <div class="warp-streak streak-5"></div>
+    </div>
+    
+    <!-- Cosmic Planet Decorative Element -->
+    <div class="cosmic-planet-wrap" aria-hidden="true">
+      <div class="planet-glow"></div>
+      <img src="assets/imgs/xelans_gold_planet_solo.png" alt="" class="cosmic-planet" />
+      <div class="satellite-orbit orbit-1"><div class="satellite"></div></div>
+      <div class="satellite-orbit orbit-2"><div class="satellite"></div></div>
+      <div class="satellite-orbit orbit-3"><div class="satellite"></div></div>
+    </div>
+
     <div class="section-container constellation-wrap">
       <div class="section-header">
         <span class="section-tag">Why Xelans</span>
-        <h2 class="section-title">Built for <span class="gradient-text">Serious Traders</span></h2>
+        <h2 class="section-title h-glitch" data-text="Built for Serious Traders">Built for <span class="gradient-text">Serious Traders</span></h2>
         <p class="section-sub">No one goes further to equip you with everything you need to unlock your trading potential</p>
       </div>
 
@@ -468,7 +527,7 @@
     <div class="section-container">
       <div class="section-header">
         <span class="section-tag">Our Numbers</span>
-        <h2 class="section-title">Trusted by Traders <span class="gradient-text">Worldwide</span></h2>
+        <h2 class="section-title h-glitch" data-text="Trusted by Traders Worldwide">Trusted by Traders <span class="gradient-text">Worldwide</span></h2>
       </div>
       <div class="stats-grid">
         <div class="stat-card hud-card" data-anim="fadeUp" style="--delay:0s">
@@ -562,11 +621,17 @@
               <div class="device-screen">
                 <div class="mock-bar"><div class="mock-tabs"><span class="mt active">Charts</span><span class="mt">Signals</span><span class="mt">Trade</span></div></div>
                 <div class="mock-chart">
-                  <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+                  <svg viewBox="0 0 300 120" preserveAspectRatio="none" style="overflow: visible;">
                     <path d="M0,80 L30,70 L60,75 L90,50 L120,60 L150,35 L180,45 L210,20 L240,30 L270,15 L300,5" fill="none" stroke="#f0c040" stroke-width="2"/>
                     <path d="M0,80 L30,70 L60,75 L90,50 L120,60 L150,35 L180,45 L210,20 L240,30 L270,15 L300,5 L300,120 L0,120Z" fill="rgba(240,192,64,0.08)"/>
                     <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
                     <line x1="0" y1="80" x2="300" y2="80" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                    <g class="rocket-animate" style="offset-path: path('M0,80 L30,70 L60,75 L90,50 L120,60 L150,35 L180,45 L210,20 L240,30 L270,15 L300,5');">
+                      <path class="rocket-flame" d="M-2,6 L0,12 L2,6 Z" fill="#ff4d00" />
+                      <path d="M-4,2 L-7,7 L-4,5 Z M4,2 L7,7 L4,5 Z" fill="#f0c040" />
+                      <path d="M0-10 C3-10 5-6 5-2 C5 2 3 6 0 6 C-3 6 -5 2 -5-2 C-5-6 -3-10 0-10 Z" fill="var(--gold-3)" />
+                      <circle cx="0" cy="-3" r="1.5" fill="var(--navy)" />
+                    </g>
                   </svg>
                 </div>
                 <div class="mock-positions">
@@ -601,9 +666,15 @@
               <div class="device-screen">
                 <div class="mock-bar-m"><span>Xelans MT5</span><span class="live-dot"></span></div>
                 <div class="mock-chart">
-                  <svg viewBox="0 0 160 120" preserveAspectRatio="none">
+                  <svg viewBox="0 0 160 120" preserveAspectRatio="none" style="overflow: visible;">
                     <path d="M0,60 L20,50 L40,55 L60,30 L80,40 L100,20 L120,25 L140,10 L160,5" fill="none" stroke="#f0c040" stroke-width="2"/>
                     <path d="M0,60 L20,50 L40,55 L60,30 L80,40 L100,20 L120,25 L140,10 L160,5 L160,120 L0,120Z" fill="rgba(240,192,64,0.08)"/>
+                    <g class="rocket-animate" style="offset-path: path('M0,60 L20,50 L40,55 L60,30 L80,40 L100,20 L120,25 L140,10 L160,5');">
+                      <path class="rocket-flame" d="M-2,6 L0,12 L2,6 Z" fill="#ff4d00" />
+                      <path d="M-4,2 L-7,7 L-4,5 Z M4,2 L7,7 L4,5 Z" fill="#f0c040" />
+                      <path d="M0-10 C3-10 5-6 5-2 C5 2 3 6 0 6 C-3 6 -5 2 -5-2 C-5-6 -3-10 0-10 Z" fill="var(--gold-3)" />
+                      <circle cx="0" cy="-3" r="1.5" fill="var(--navy)" />
+                    </g>
                   </svg>
                 </div>
                 <div class="mock-positions">
@@ -638,9 +709,15 @@
               <div class="device-screen">
                 <div class="mock-bar-m"><span>Xelans MT5</span><span class="live-dot"></span></div>
                 <div class="mock-chart">
-                  <svg viewBox="0 0 160 120" preserveAspectRatio="none">
+                  <svg viewBox="0 0 160 120" preserveAspectRatio="none" style="overflow: visible;">
                     <path d="M0,70 L20,55 L40,60 L60,40 L80,45 L100,25 L120,30 L140,15 L160,8" fill="none" stroke="#c89b2a" stroke-width="2"/>
                     <path d="M0,70 L20,55 L40,60 L60,40 L80,45 L100,25 L120,30 L140,15 L160,8 L160,120 L0,120Z" fill="rgba(200,155,42,0.08)"/>
+                    <g class="rocket-animate" style="offset-path: path('M0,70 L20,55 L40,60 L60,40 L80,45 L100,25 L120,30 L140,15 L160,8');">
+                      <path class="rocket-flame" d="M-2,6 L0,12 L2,6 Z" fill="#ff4d00" />
+                      <path d="M-4,2 L-7,7 L-4,5 Z M4,2 L7,7 L4,5 Z" fill="#c89b2a" />
+                      <path d="M0-10 C3-10 5-6 5-2 C5 2 3 6 0 6 C-3 6 -5 2 -5-2 C-5-6 -3-10 0-10 Z" fill="var(--gold-3)" />
+                      <circle cx="0" cy="-3" r="1.5" fill="var(--navy)" />
+                    </g>
                   </svg>
                 </div>
                 <div class="mock-positions">
@@ -675,9 +752,15 @@
               <div class="device-screen">
                 <div class="mock-bar"><div class="mock-tabs"><span class="mt active">Web Terminal</span><span class="mt">Signals</span></div></div>
                 <div class="mock-chart">
-                  <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+                  <svg viewBox="0 0 300 120" preserveAspectRatio="none" style="overflow: visible;">
                     <path d="M0,90 L30,80 L60,85 L90,60 L120,70 L150,45 L180,55 L210,30 L240,40 L270,20 L300,10" fill="none" stroke="#e0b535" stroke-width="2"/>
                     <path d="M0,90 L30,80 L60,85 L90,60 L120,70 L150,45 L180,55 L210,30 L240,40 L270,20 L300,10 L300,120 L0,120Z" fill="rgba(224,181,53,0.08)"/>
+                    <g class="rocket-animate" style="offset-path: path('M0,90 L30,80 L60,85 L90,60 L120,70 L150,45 L180,55 L210,30 L240,40 L270,20 L300,10');">
+                      <path class="rocket-flame" d="M-2,6 L0,12 L2,6 Z" fill="#ff4d00" />
+                      <path d="M-4,2 L-7,7 L-4,5 Z M4,2 L7,7 L4,5 Z" fill="#e0b535" />
+                      <path d="M0-10 C3-10 5-6 5-2 C5 2 3 6 0 6 C-3 6 -5 2 -5-2 C-5-6 -3-10 0-10 Z" fill="var(--gold-3)" />
+                      <circle cx="0" cy="-3" r="1.5" fill="var(--navy)" />
+                    </g>
                   </svg>
                 </div>
                 <div class="mock-positions">
@@ -708,10 +791,10 @@
 
   <!-- ===== MARKETS TABLE ===== -->
   <section class="markets-section reveal curved-section-top" id="marketsSection">
-    <div class="section-container">
+    <div class="section-container" style="position:relative;z-index:2;">
       <div class="section-header">
         <span class="section-tag">Global Markets</span>
-        <h2 class="section-title">Trade a Wide Range of <span class="gradient-text">Global Markets</span></h2>
+        <h2 class="section-title h-glitch" data-text="Trade a Wide Range of Global Markets">Trade a Wide Range of <span class="gradient-text">Global Markets</span></h2>
         <p class="section-sub">Explore opportunities with instruments tailored for a growing trading community</p>
       </div>
       <div class="markets-grid">
@@ -760,6 +843,11 @@
     <div class="section-container">
       <div class="insurance-card" data-anim="fadeUp">
         <div class="insurance-icon-wrap">
+          <div class="insurance-ripples">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+          </div>
           <div class="shield-pulse"></div>
           <span class="insurance-icon-text"><svg width="36" height="36" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         </div>
@@ -784,17 +872,36 @@
       </div>
       <div class="why-grid">
         <div class="why-card" data-anim="fadeUp" style="--delay:0s">
-          <div class="why-icon"><img src="assets/imgs/3d-reliability.png" alt="Reliability" /></div>
+          <div class="why-icon">
+            <div class="mini-orbit">
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+            </div>
+            <img src="assets/imgs/3d-reliability.png" alt="Reliability" />
+          </div>
           <h3>Reliability You Can Count On</h3>
           <p>Built on robust infrastructure with USD 100,000 insurance, we ensure your trading journey is secure and seamless with 99.9% uptime.</p>
         </div>
         <div class="why-card" data-anim="fadeUp" style="--delay:0.1s">
-          <div class="why-icon"><img src="assets/imgs/Fast-Execution.webp" alt="Speed" /></div>
+          <div class="why-icon">
+            <div class="mini-orbit">
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+            </div>
+            <img src="assets/imgs/Fast-Execution.webp" alt="Speed" />
+          </div>
           <h3>Speed &amp; Efficiency</h3>
           <p>From lightning-fast execution to instant withdrawals, we prioritize efficiency so you never miss a market opportunity.</p>
         </div>
         <div class="why-card" data-anim="fadeUp" style="--delay:0.2s">
           <div class="why-icon">
+            <div class="mini-orbit">
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+              <div class="mini-satellite"></div>
+            </div>
             <svg width="64" height="64" fill="none" viewBox="0 0 24 24">
               <defs>
                 <linearGradient id="grad-support" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -815,13 +922,18 @@
 
   <!-- ===== PAYMENT SECTION ===== -->
   <section class="payment-section reveal curved-section" id="paymentSection">
-    <div class="section-container">
+    <canvas id="paymentCosmicCanvas" class="payment-cosmic-canvas" aria-hidden="true"></canvas>
+    <div class="section-container" style="position:relative;z-index:2;">
       <div class="section-header">
         <span class="section-tag">Flexible Payments</span>
         <h2 class="section-title">Wide Range of <span class="gradient-text">Payment Options</span></h2>
         <p class="section-sub">At Xelans Markets, we make deposits and withdrawals simple, fast, and reliable</p>
       </div>
       <div class="payment-methods">
+        <div class="payment-orbit-center">
+          <div class="orbit-sun-glow"></div>
+          <div class="orbit-star-core"></div>
+        </div>
         <div class="payment-method" data-anim="fadeUp" style="--delay:0s">
           <div class="pm-icon"><img src="assets/imgs/funding/wire-transfer.png" alt="Bank Wire" /></div>
           <span>Bank Wire</span>
@@ -880,7 +992,9 @@
 
   <!-- ===== TESTIMONIALS ===== -->
   <section class="testimonials-section reveal curved-section-top" id="testimonialsSection">
-    <div class="section-container">
+    <!-- Constellation background canvas -->
+    <canvas class="constellation-canvas" id="constellationCanvas" aria-hidden="true"></canvas>
+    <div class="section-container" style="position:relative;z-index:2;">
       <div class="section-header">
         <span class="section-tag">Success Stories</span>
         <h2 class="section-title">Join the Xelans <span class="gradient-text">Success Stories</span></h2>
@@ -953,8 +1067,9 @@
   </section>
 
   <!-- ===== BLOG SECTION ===== -->
-  <section class="blog-section reveal curved-section" id="blogSection">
-    <div class="section-container">
+  <section class="blog-section reveal" id="blogSection">
+    <div class="knowledge-stream-bg" id="knowledgeStream"></div>
+    <div class="section-container" style="position:relative;z-index:2;">
       <div class="section-header">
         <span class="section-tag">Latest Insights</span>
         <h2 class="section-title">Our Latest <span class="gradient-text">Blogs</span></h2>

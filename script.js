@@ -428,28 +428,400 @@ showCookieBanner();
 
 
 // ============================================================
-// COMET TRAIL CURSOR (4)
+// INTERACTIVE SPACE EFFECTS
+// ============================================================
+(function initSpaceInteractions() {
+  const starLayers = document.querySelectorAll('.p-star-layer');
+  
+  document.addEventListener('mousemove', (e) => {
+    const { clientX: x, clientY: y } = e;
+    
+    // Parallax stars
+    const moveX = (x - window.innerWidth / 2) / 50;
+    const moveY = (y - window.innerHeight / 2) / 50;
+
+    starLayers.forEach((layer, idx) => {
+      const speed = (idx + 1) * 0.5;
+      layer.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+    });
+  });
+})();
+
+// ============================================================
+// KNOWLEDGE STREAM (BLOG BACKGROUND)
+// ============================================================
+(function initKnowledgeStream() {
+  const container = document.getElementById('knowledgeStream');
+  if (!container) return;
+
+  const particleCount = 20;
+
+  for (let i = 0; i < particleCount; i++) {
+    createParticle();
+  }
+
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'knowledge-particle';
+    
+    // Randomize properties
+    const size = Math.random() * 3 + 1;
+    const posX = Math.random() * 100;
+    const duration = Math.random() * 10 + 10; // 10s to 20s
+    const delay = Math.random() * 20;
+
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${posX}%`;
+    particle.style.setProperty('--duration', `${duration}s`);
+    particle.style.animationDelay = `-${delay}s`; // Negative delay for staggered start
+
+    container.appendChild(particle);
+  }
+})();
+
+// ============================================================
+// COMET TRAIL CURSOR
 // ============================================================
 (function initCometTrail() {
-  document.addEventListener('mousemove', (e) => {
-    // Only spawn particles occasionally for performance
-    if (Math.random() > 0.4) return;
+  const style = document.createElement('style');
+  style.textContent = `
+    .comet-particle {
+      position: fixed;
+      width: 4px; height: 4px;
+      background: var(--gold-2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      filter: blur(1px);
+      box-shadow: 0 0 10px var(--gold-3);
+      animation: cometFade 0.8s ease-out forwards;
+    }
+    @keyframes cometFade {
+      0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+      100% { transform: scale(0) translate(0, 20px); opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
 
-    const particle = document.createElement('div');
-    particle.className = 'comet-particle';
-    
-    // Slight random offset
-    const ox = (Math.random() - 0.5) * 15;
-    const oy = (Math.random() - 0.5) * 15;
-    
-    particle.style.left = (e.clientX + ox) + 'px';
-    particle.style.top = (e.clientY + oy) + 'px';
-    
-    document.body.appendChild(particle);
-    
-    // Remove after animation
-    setTimeout(() => {
-      particle.remove();
-    }, 800);
+  document.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.6) return;
+    const p = document.createElement('div');
+    p.className = 'comet-particle';
+    p.style.left = e.clientX + 'px';
+    p.style.top = e.clientY + 'px';
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 800);
   });
+})();
+
+// ============================================================
+// CONSTELLATION NETWORK MAP — GLOBAL MARKETS SECTION
+// ============================================================
+(function initConstellation() {
+  const canvas = document.getElementById('constellationCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Named nodes for the 6 markets
+  const nodeLabels = ['Forex', 'Metals', 'Indices', 'Commodities', 'Futures', 'Instruments'];
+  const nodeColors = [
+    'rgba(212,160,23,',   // gold
+    'rgba(255,220,100,',  // light gold
+    'rgba(14,42,100,',    // navy
+    'rgba(200,155,42,',   // amber
+    'rgba(180,120,20,',   // dark gold
+    'rgba(240,192,64,',   // bright gold
+  ];  // Named star colors
+  const starColors = [
+    'rgba(212,160,23,',   // gold
+    'rgba(255,255,255,',  // white
+    'rgba(180,220,255,',  // blue-ish white
+  ];
+
+  let W, H, constellationGroups, backgroundStars, packets;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    initStars();
+  }
+
+  function initStars() {
+    constellationGroups = [];
+    
+    // 1. LEO (The Lion) - LOWERED TOP LEFT
+    const leo = {
+      stars: [
+        { rx: 0.08, ry: 0.35, r: 3.5, flare: true },  // Regulus
+        { rx: 0.05, ry: 0.25, r: 2.5, flare: false }, 
+        { rx: 0.10, ry: 0.18, r: 2.8, flare: true },  
+        { rx: 0.16, ry: 0.15, r: 2.3, flare: false }, 
+        { rx: 0.20, ry: 0.22, r: 2.3, flare: false }, 
+        { rx: 0.26, ry: 0.28, r: 3.0, flare: true },  
+        { rx: 0.33, ry: 0.32, r: 3.2, flare: true }   
+      ],
+      connections: [[0,2], [2,3], [3,4], [4,2], [2,5], [5,6]]
+    };
+
+    // 2. CYGNUS (The Swan) - LOWERED TOP RIGHT
+    const cygnus = {
+      stars: [
+        { rx: 0.85, ry: 0.15, r: 3.5, flare: true },  // Deneb
+        { rx: 0.85, ry: 0.25, r: 2.8, flare: false }, 
+        { rx: 0.85, ry: 0.45, r: 3.0, flare: true },  // Albireo
+        { rx: 0.75, ry: 0.30, r: 2.5, flare: false }, // Wing Tip
+        { rx: 0.95, ry: 0.20, r: 2.5, flare: false }  // Wing Tip
+      ],
+      connections: [[0,1], [1,2], [1,3], [1,4]]
+    };
+
+    // 3. SCORPIUS (The Scorpion) - LOWERED BOTTOM CENTER
+    const scorpius = {
+      stars: [
+        { rx: 0.40, ry: 0.80, r: 2.8, flare: false }, // Claw
+        { rx: 0.60, ry: 0.80, r: 2.8, flare: false }, // Claw
+        { rx: 0.50, ry: 0.85, r: 4.2, flare: true },  // Antares (Heart)
+        { rx: 0.52, ry: 0.90, r: 2.6, flare: false }, // Body
+        { rx: 0.55, ry: 0.96, r: 2.6, flare: false }, // Tail Bend
+        { rx: 0.60, ry: 0.98, r: 3.0, flare: true },  // Shaula
+        { rx: 0.58, ry: 0.92, r: 2.3, flare: false }  // Tail segment
+      ],
+      connections: [[0,2], [1,2], [2,3], [3,6], [6,4], [4,5]]
+    };
+
+    [leo, cygnus, scorpius].forEach(group => {
+      const gNodes = group.stars.map(s => ({
+        x: s.rx * W,
+        y: s.ry * H,
+        r: s.r * 1.0, 
+        flare: s.flare,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.02 + Math.random() * 0.03,
+        color: starColors[Math.floor(Math.random() * starColors.length)]
+      }));
+      constellationGroups.push({ nodes: gNodes, connections: group.connections });
+    });
+
+    // Background random stars
+    backgroundStars = [];
+    for (let i = 0; i < 80; i++) { 
+      backgroundStars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.5 + 0.5,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.01 + Math.random() * 0.04
+      });
+    }
+  }
+
+  function drawFlare(ctx, x, y, size, opacity, color) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.beginPath();
+    ctx.strokeStyle = color + (opacity * 1.5) + ')'; // More opaque flares
+    ctx.lineWidth = 2.0; // Thicker flare
+    
+    // Cross shape flare
+    ctx.moveTo(-size, 0); ctx.lineTo(size, 0);
+    ctx.moveTo(0, -size); ctx.lineTo(0, size);
+    ctx.stroke();
+
+    // Small diagonal flare
+    ctx.beginPath();
+    ctx.lineWidth = 1.0;
+    const diag = size * 0.5;
+    ctx.moveTo(-diag, -diag); ctx.lineTo(diag, diag);
+    ctx.moveTo(diag, -diag); ctx.lineTo(-diag, diag);
+    ctx.stroke();
+    
+    ctx.restore();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // 1. Draw Background Twinkling Stars
+      backgroundStars.forEach(s => {
+      s.pulse += s.pulseSpeed;
+      const flicker = 0.2 + 0.8 * (0.5 + 0.5 * Math.sin(s.pulse)); // More flicker
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${flicker * 0.7})`; // Brighter background stars
+      ctx.fill();
+    });
+
+    // 2. Draw Constellations
+    constellationGroups.forEach(group => {
+      // Draw Connections first
+      group.connections.forEach(conn => {
+        const n1 = group.nodes[conn[0]];
+        const n2 = group.nodes[conn[1]];
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(212,160,23,0.6)'; // Much brighter lines
+        ctx.lineWidth = 1.0;
+        ctx.shadowColor = 'rgba(212,160,23,0.5)';
+        ctx.shadowBlur = 8; // Glowing lines
+        ctx.moveTo(n1.x, n1.y);
+        ctx.lineTo(n2.x, n2.y);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      });
+
+      // Draw Stars
+      group.nodes.forEach(n => {
+        n.pulse += n.pulseSpeed;
+        const shimmer = 0.5 + 0.5 * Math.sin(n.pulse);
+        
+        // Star Core
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * (0.9 + shimmer * 0.3), 0, Math.PI * 2);
+        ctx.fillStyle = n.color + (0.7 + shimmer * 0.3) + ')'; // Brighter core
+        ctx.shadowBlur = 20 * shimmer; // Stronger glow
+        ctx.shadowColor = n.color + '1)';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Shining Flare
+        if (n.flare) {
+          drawFlare(ctx, n.x, n.y, 15 + shimmer * 10, 0.6 * shimmer, n.color);
+        }
+      });
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  const section = document.getElementById('testimonialsSection');
+  let running = false;
+  const visObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !running) {
+        running = true;
+        draw();
+      }
+    });
+  }, { threshold: 0.1 });
+
+  if (section) visObserver.observe(section);
+  resize();
+  window.addEventListener('resize', resize);
+})();
+;
+
+// ============================================================
+// PAYMENT SECTION ORBITAL LAYOUT
+// ============================================================
+(function initPaymentOrbit() {
+  const section = document.getElementById('paymentSection');
+  const container = document.querySelector('.payment-methods');
+  const cards = document.querySelectorAll('.payment-method');
+  const canvas = document.getElementById('paymentCosmicCanvas');
+  if (!section || !container || cards.length === 0) return;
+
+  let W, H;
+  let angle = 0;
+  let isPaused = false;
+  const ctx = canvas ? canvas.getContext('2d') : null;
+
+  function resize() {
+    W = section.offsetWidth;
+    H = section.offsetHeight;
+    if (canvas) {
+      canvas.width = W;
+      canvas.height = H;
+    }
+  }
+
+  // Pause on hover
+  container.addEventListener('mouseenter', () => isPaused = true);
+  container.addEventListener('mouseleave', () => isPaused = false);
+
+  function animate() {
+    if (!isPaused) {
+      angle += 0.0015; // Very slow, subtle drift
+    }
+
+    const containerW = container.offsetWidth;
+    const containerH = container.offsetHeight;
+    
+    // Size of the orbit relative to the container
+    const rx = Math.min(containerW * 0.45, 500);
+    const ry = Math.min(containerH * 0.40, 220);
+    
+    const angleOffset = -0.05; // Static tilt
+
+    // Calculate container offset relative to the section (which is the canvas offset parent)
+    const containerRect = container.getBoundingClientRect();
+    const sectionRect = section.getBoundingClientRect();
+    const offsetX = containerRect.left - sectionRect.left;
+    const offsetY = containerRect.top - sectionRect.top;
+
+    // Canvas center (mapped to container center)
+    const canvasCenterX = offsetX + (containerW / 2);
+    const canvasCenterY = offsetY + (containerH / 2);
+
+    // 1. Draw STILL orbital path on canvas
+    if (ctx && canvas) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.translate(canvasCenterX, canvasCenterY);
+      ctx.rotate(angleOffset);
+      
+      ctx.beginPath();
+      ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(212,160,23,0.3)';
+      ctx.setLineDash([8, 12]);
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      
+      // Draw anchor dots on the orbit
+      for(let i=0; i<12; i++) {
+        const dotA = i * (Math.PI / 6);
+        ctx.beginPath();
+        ctx.arc(rx * Math.cos(dotA), ry * Math.sin(dotA), 2, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(212,160,23,0.6)';
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    // 2. Position cards MOVING slowly along the oval
+    const containerCenterX = containerW / 2;
+    const containerCenterY = containerH / 2;
+
+    cards.forEach((card, i) => {
+      // Stagger cards equally around the circle
+      const cardAngle = angle + (i * (Math.PI * 2 / cards.length)) - Math.PI / 2;
+      
+      // Base oval coordinates
+      let x = rx * Math.cos(cardAngle);
+      let y = ry * Math.sin(cardAngle);
+      
+      // Rotate coordinates to match static canvas tilt
+      const rx_final = x * Math.cos(angleOffset) - y * Math.sin(angleOffset);
+      const ry_final = x * Math.sin(angleOffset) + y * Math.cos(angleOffset);
+
+      // Final position relative to container
+      const finalX = containerCenterX + rx_final - (card.offsetWidth / 2);
+      const finalY = containerCenterY + ry_final - (card.offsetHeight / 2);
+      
+      // Depth effect: scale and opacity based on y position (front vs back)
+      const isFront = Math.sin(cardAngle) > 0;
+      const zScale = 0.85 + (Math.sin(cardAngle) + 1) * 0.15; // Subtle 3D scale
+      
+      card.style.transform = `translate(${finalX}px, ${finalY}px) scale(${zScale})`;
+      card.style.opacity = '1';
+      card.style.filter = 'none';
+      card.style.zIndex = isFront ? '50' : '10';
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  animate();
 })();
