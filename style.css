@@ -443,7 +443,7 @@ body::after {
   100% { transform: rotate(-40deg) translateX(-150vw); opacity: 0; }
 }
 
-/* Falling Meteors (Right to Left) */
+/* Falling Meteors (Top-right to Bottom-left, consistent angle) */
 .meteors-background {
   position: fixed;
   inset: 0;
@@ -454,15 +454,15 @@ body::after {
 
 .meteor {
   position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 4px;
-  height: 4px;
-  background: var(--gold-2);
-  border-radius: 50%;
-  box-shadow: 0 0 20px var(--gold-2), 0 0 40px var(--gold-3);
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-2), #fff);
+  border-radius: 2px;
   opacity: 0;
   z-index: 10;
+  transform: rotate(-45deg);
+  transform-origin: right center;
+  filter: drop-shadow(0 0 4px var(--gold-2));
   animation: meteorFall 8s infinite linear;
 }
 
@@ -470,38 +470,35 @@ body::after {
   content: "";
   position: absolute;
   top: 50%;
-  left: 0;
-  transform: translateY(-50%) translateX(-100%);
-  width: 180px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--gold-2));
-  filter: blur(1px);
+  right: 0;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold-2), 0 0 16px var(--gold-3);
 }
 
-.m-1 { top: 10%; right: 5%; animation-delay: 0s; animation-duration: 6s; }
-.m-2 { top: 25%; right: 15%; animation-delay: 3s; animation-duration: 9s; }
-.m-3 { top: 5%; right: 40%; animation-delay: 1.5s; animation-duration: 7s; }
-.m-4 { top: 40%; right: -10%; animation-delay: 5s; animation-duration: 10s; }
-.m-5 { top: 60%; right: 10%; animation-delay: 0.5s; animation-duration: 12s; }
-.m-6 { top: 20%; right: 60%; animation-delay: 4s; animation-duration: 8s; }
+.m-1 { top: 5%;  left: 80%; animation-delay: 0s;   animation-duration: 6s; }
+.m-2 { top: 10%; left: 60%; animation-delay: 3s;   animation-duration: 9s; }
+.m-3 { top: 2%;  left: 40%; animation-delay: 1.5s; animation-duration: 7s; }
+.m-4 { top: 15%; left: 90%; animation-delay: 5s;   animation-duration: 10s; }
+.m-5 { top: 0%;  left: 70%; animation-delay: 0.5s; animation-duration: 12s; }
+.m-6 { top: 8%;  left: 50%; animation-delay: 4s;   animation-duration: 8s; }
 
 @keyframes meteorFall {
   0% {
-    transform: translate(0, 0) rotate(135deg);
+    transform: rotate(-45deg) translateX(0);
     opacity: 0;
   }
-  1% {
+  5% {
     opacity: 1;
   }
-  40% {
-    opacity: 1;
-  }
-  60% {
-    transform: translate(-180vw, 120vh) rotate(135deg);
-    opacity: 0;
+  70% {
+    opacity: 0.8;
   }
   100% {
-    transform: translate(-180vw, 120vh) rotate(135deg);
+    transform: rotate(-45deg) translateX(-200vw);
     opacity: 0;
   }
 }
