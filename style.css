@@ -456,7 +456,7 @@ body::after {
   position: absolute;
   width: 180px;
   height: 2px;
-  background: linear-gradient(to right, transparent, var(--gold-2), #fff);
+  background: linear-gradient(to left, transparent, var(--gold-2), #fff);
   border-radius: 2px;
   opacity: 0;
   z-index: 10;
@@ -470,7 +470,7 @@ body::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0;
+  left: 0;
   transform: translateY(-50%);
   width: 6px;
   height: 6px;
