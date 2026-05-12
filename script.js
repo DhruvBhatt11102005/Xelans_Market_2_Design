@@ -114,8 +114,8 @@ resetSlideTimer();
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 120) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(212,160,23,${0.08 * (1 - dist / 120)})`;
-          ctx.lineWidth = 0.5;
+          ctx.strokeStyle = `rgba(212,160,23,${0.25 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.8;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
           ctx.stroke();
@@ -126,8 +126,11 @@ resetSlideTimer();
     particles.forEach(p => {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212,160,23,${p.alpha * 0.5})`;
+      ctx.fillStyle = `rgba(212,160,23,${p.alpha})`;
+      ctx.shadowColor = 'rgba(212,160,23,0.8)';
+      ctx.shadowBlur = 6;
       ctx.fill();
+      ctx.shadowBlur = 0;
       p.x += p.vx;
       p.y += p.vy;
       if (p.x < 0 || p.x > W) p.vx *= -1;
@@ -645,11 +648,14 @@ showCookieBanner();
     // 1. Draw Background Twinkling Stars
       backgroundStars.forEach(s => {
       s.pulse += s.pulseSpeed;
-      const flicker = 0.2 + 0.8 * (0.5 + 0.5 * Math.sin(s.pulse)); // More flicker
+      const flicker = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(s.pulse));
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${flicker * 0.7})`; // Brighter background stars
+      ctx.fillStyle = `rgba(255,255,255,${flicker})`;
+      ctx.shadowColor = 'rgba(255,255,255,0.8)';
+      ctx.shadowBlur = 4;
       ctx.fill();
+      ctx.shadowBlur = 0;
     });
 
     // 2. Draw Constellations
@@ -659,10 +665,10 @@ showCookieBanner();
         const n1 = group.nodes[conn[0]];
         const n2 = group.nodes[conn[1]];
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(212,160,23,0.6)'; // Much brighter lines
-        ctx.lineWidth = 1.0;
-        ctx.shadowColor = 'rgba(212,160,23,0.5)';
-        ctx.shadowBlur = 8; // Glowing lines
+        ctx.strokeStyle = 'rgba(212,160,23,0.85)';
+        ctx.lineWidth = 1.2;
+        ctx.shadowColor = 'rgba(212,160,23,0.9)';
+        ctx.shadowBlur = 12;
         ctx.moveTo(n1.x, n1.y);
         ctx.lineTo(n2.x, n2.y);
         ctx.stroke();
@@ -677,8 +683,8 @@ showCookieBanner();
         // Star Core
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r * (0.9 + shimmer * 0.3), 0, Math.PI * 2);
-        ctx.fillStyle = n.color + (0.7 + shimmer * 0.3) + ')'; // Brighter core
-        ctx.shadowBlur = 20 * shimmer; // Stronger glow
+        ctx.fillStyle = n.color + (0.85 + shimmer * 0.15) + ')';
+        ctx.shadowBlur = 25 + shimmer * 15;
         ctx.shadowColor = n.color + '1)';
         ctx.fill();
         ctx.shadowBlur = 0;
